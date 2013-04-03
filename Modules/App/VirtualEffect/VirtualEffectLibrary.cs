@@ -46,9 +46,9 @@ namespace VixenModules.App.VirtualEffect
 			get { return _data.Library; }
 		}
 
-		public void addEffect(Guid virtualEffectGuid, String Name, Guid EffectGuid, object[] parameters)
+		public void addEffect(Guid virtualEffectGuid, String Name, Guid EffectGuid, object[] parameters,TimeSpan effectTimeSpan)
 		{
-			Library.Add(virtualEffectGuid, new VirtualEffect(Name, EffectGuid, parameters));
+			Library.Add(virtualEffectGuid, new VirtualEffect(Name, EffectGuid, parameters,effectTimeSpan));
 		}
 
 		public void removeEffect(Guid virtualEffectGuid)

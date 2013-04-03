@@ -17,6 +17,8 @@ namespace VixenModules.App.VirtualEffect
 		public String Name { get; set; }
 		[DataMember]
 		private object[] _virtualParams;
+		[DataMember]
+		public TimeSpan EffectTimeSpan { get; set; }
 
 		public object[] VirtualParams
 		{
@@ -32,11 +34,12 @@ namespace VixenModules.App.VirtualEffect
 			}
 		}		
 
-		public VirtualEffect(String name, Guid effectGuid, object[] virtualParams)
+		public VirtualEffect(String name, Guid effectGuid, object[] virtualParams,TimeSpan timeSpan)
 		{
 			this.Name = name;
 			this.EffectGuid = effectGuid;
 			this.VirtualParams = virtualParams;
+			this.EffectTimeSpan = timeSpan;
 		}
 	}
 }

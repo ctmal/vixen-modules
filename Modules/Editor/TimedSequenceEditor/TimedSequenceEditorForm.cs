@@ -781,7 +781,7 @@ namespace VixenModules.Editor.TimedSequenceEditor
 			VirtualEffect virtualEffect = _virtualEffectLibrary.GetVirtualEffect(effectId);
 			IEffectModuleInstance effect = ApplicationServices.Get<IEffectModuleInstance>(virtualEffect.EffectGuid);
 			effect.ParameterValues = virtualEffect.VirtualParams;
-			addEffectInstance(effect, row, startTime, timeSpan);
+			addEffectInstance(effect, row, startTime, virtualEffect.EffectTimeSpan);
 		}
 
 		/// <summary>
@@ -1585,10 +1585,10 @@ namespace VixenModules.Editor.TimedSequenceEditor
 
 		private void saveVirtualEffect(IEffectModuleInstance moduleInstance)
 		{
-			VirtualEffectNameDialog dialog = new VirtualEffectNameDialog();
+			Common.Controls.TextDialog dialog = new Common.Controls.TextDialog("Name");
 			if (dialog.ShowDialog() == DialogResult.OK)
 			{
-				_virtualEffectLibrary.addEffect(Guid.NewGuid(), dialog.effectName, moduleInstance.TypeId, moduleInstance.ParameterValues);
+				_virtualEffectLibrary.addEffect(Guid.NewGuid(), dialog.Response, moduleInstance.TypeId, moduleInstance.ParameterValues,moduleInstance.TimeSpan);
 				toolStripExVirtualEffects_Clear();
 				LoadVirtualEffects();
 			}
